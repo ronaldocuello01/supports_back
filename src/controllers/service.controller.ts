@@ -15,9 +15,18 @@ class serviceController{
         // get users from database
         const { rows } = await conn.query(`select * from users where stat = 'A'`);
         const users = rows;
+        console.log('u', users);
+        
 
         // randomly select an user to asign to the service
-        const id_user = Math.floor(Math.random() * users.length) + 1;
+        let key = Math.floor(Math.random() * (users.length));
+        const id_user = users[key].id
+
+        console.log("user", users[key]);
+        
+
+        console.log('math', id_user, ' - ', users.length);
+        
 
         // get the datetime to save the service
         const date = new Date()
